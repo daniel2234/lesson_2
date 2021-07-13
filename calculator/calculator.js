@@ -5,6 +5,7 @@
 // Print the result to the terminal.
 
 const readline = require('readline-sync');
+const MESSAGES = require('./calculator_messages.json');
 
 function prompt(message) {
   console.log(`=> ${message}`);
@@ -26,12 +27,14 @@ function validateYes(word) {
   return word.toLowerCase();
 }
 
-prompt("Welcome to Calculator!");
+let languageSelected = 'en';
 
-let lastResponse;
+prompt(MESSAGES[languageSelected]["welcome"]);
+prompt(MESSAGES[languageSelected]["welcome"]);
+
 
 do {
-  prompt("What is the first number?");
+  prompt(MESSAGES[languageSelected]["firstNumber"]);
   let firstNumber = readline.question();
 
   while (invalidNumber(firstNumber)) {
@@ -39,7 +42,7 @@ do {
     firstNumber = readline.question();
   }
 
-  prompt("What is the second number?");
+  prompt(MESSAGES[languageSelected]["secondNumber"]);
   let secondNumber = readline.question();
 
   while (invalidNumber(secondNumber)) {
@@ -47,11 +50,11 @@ do {
     secondNumber = readline.question();
   }
 
-  prompt("What operation would you like to perform? 1)Add 2)Subtract 3)Multiply 4)Divide");
+  prompt(MESSAGES[languageSelected]["choose"]);
   let operation = readline.question();
 
   while (!['1', '2', '3', '4'].includes(operation)) {
-    prompt('Must choose 1, 2, 3 or 4');
+    prompt(MESSAGES[languageSelected]["constraints"]);
     operation = readline.question();
   }
 
@@ -72,7 +75,7 @@ do {
   }
 
   prompt(output);
-  prompt("Would you like to play again (yes/no)??");
+  prompt(MESSAGES[languageSelected]["playAgain"]);
   lastResponse = readline.question();
 
 } while (validateYes(lastResponse) === 'yes' || validateYes(lastResponse) === 'y');
