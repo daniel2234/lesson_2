@@ -1,6 +1,8 @@
 // let m = p * (j / (1 - Math.pow((1 + j), (-n))));
-// let m = 100000 * (0.0299 / 1 - Math.pow((1 + 0.0299). (-96))));
+// 2.99 example
+// let m = 100000 * (0.00249 / 1 - Math.pow((1 + 0.00249), (-96))));
 
+//let m = 200000 * (0.0024916666666666668 / (1 - Math.pow((1 + 0.0024916666666666668), (-96))));
 //m = monthly payment
 // p = loan amount
 // j = monthly interest rate
@@ -34,8 +36,7 @@ function invalidNumber(number) {
 }
 
 function showFormattedLoanAmount(monthlyPayment) {
-  let formattedNumber = Number(monthlyPayment).toFixed(2);
-  return formattedNumber.toLocaleString("en-US");
+  return monthlyPayment.toFixed(2).toLocaleString("en-US");
 }
 
 function monthlyInterestRateConversion(interest) {
@@ -78,7 +79,7 @@ while (invalidNumber(interest)) {
 }
 
 interest = monthlyInterestRateConversion(interest);
-interest = interestRateConversion(interest).toFixed(6);
+interest = interestRateConversion(interest);
 
 let monthlyPayment = monthlyPaymentCalculation (
   loanAmount, interest, loanMonthDuration
@@ -86,7 +87,4 @@ let monthlyPayment = monthlyPaymentCalculation (
 
 monthlyPayment = showFormattedLoanAmount(monthlyPayment);
 
-console.log(typeof monthlyPayment);
-prompt(`${monthlyPayment}`);
-
-// prompt(loanAmount);
+prompt(`$${monthlyPayment}`);
